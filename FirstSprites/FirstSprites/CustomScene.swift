@@ -27,12 +27,17 @@ class CustomScene: SKScene {
         // Create move action
         let actionDuration = 1.0
         let moveAction = SKAction.move(to: position, duration: actionDuration)
-        let turnAction = SKAction.rotate(byAngle: CGFloat.pi * 2, duration: actionDuration)
+        // let turnAction = SKAction.rotate(byAngle: CGFloat.pi * 2, duration: actionDuration)
         // pi * 2 is a full circle (obviously)
-        let groupAction = SKAction.group([moveAction, turnAction])
-        crab.run(groupAction)
+        // let groupAction = SKAction.group([moveAction, turnAction])
+        // crab.run(groupAction)
         // groupAction allows things to run simultaneously.
         // in this case, it will move and turn simultaneously.
+        
+        let zoomAction = SKAction.scale(by: 1.3, duration: 0.3)
+        let unzoomAction = SKAction.scale(to: 1.0, duration: 0.1)
+        let sequenceAction = SKAction.sequence([zoomAction, moveAction, unzoomAction])
+        crab.run(sequenceAction)
         
         // Run move action
         // commented the line out below
